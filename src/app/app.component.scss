@@ -1,0 +1,72 @@
+ion-menu {
+  --ion-background-color: #f2f2f7;
+  --width: 44vw;
+
+  ion-toolbar {
+    --background: #f2f2f7 !important;
+  }
+
+  ion-list ion-item {
+    --inner-padding-end: 1vw;
+    --inner-padding-start: 3vw;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    margin: 0 20px;
+    &.active {
+      --background: var(--ion-color-primary);
+      color: var(--ion-color-light);
+      border-radius: 15px;
+    }
+  }
+}
+
+.pb {
+  padding-bottom: 35px;
+}
+
+.android {
+  .pt {
+    padding-top: 55px;
+  }
+}
+
+.ios {
+  .pt {
+    padding-top: 40px;
+  }
+}
+
+ion-icon {
+  color: rgba(60, 60, 67, 0.3);
+}
+  ion-header ion-toolbar:first-of-type {
+    padding-top: 6vh;
+    padding-bottom: 2vh;
+    --border-width: 0px;
+    ion-title{
+        padding: 3vw;
+        text-align: start;
+    }
+}
+
+
+.offline-toolbar {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important; 
+  height: 30px; /* Adjust the height as needed */
+  min-height: unset;
+  display: flex; /* Use flexbox to easily center the content */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+}
+
+.offline-title {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  font-size: 14px; /* Adjust font size as needed */
+  text-align: center !important;
+  width: 100%; /* Ensure the title takes up the full width */
+  line-height: 30px; /* Match this with the toolbar height for vertical centering */
+}
+
+

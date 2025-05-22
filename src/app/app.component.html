@@ -1,0 +1,31 @@
+<ion-app>
+  <ion-header  *ngIf="!networkService.isConnected" class="offline-header">
+    <ion-toolbar mode="md" color="danger" class="offline-toolbar">
+      <ion-title class="offline-title">
+        YOU'RE IN OFFLINE MODE
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-menu side="end" menuId="appMenu" contentId="main-content" (ionWillOpen)="selectMenuOption()">
+    <ion-header class="ion-no-border">
+      <ion-toolbar mode="md" class="pb pt">
+        <ion-title class="sf-pro-bold roofing-title">Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle *ngFor="let menu of menuOptions">
+          <ion-item class="item" [class.active]="menu.active"
+            (click)="clickOption(menu)" button detail="false">
+            <ion-icon name="chevron-back-outline" style="padding-right: 20px;"></ion-icon>
+            <ion-label class="sf-pro-semibold roofing-label">
+              {{menu.name}}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

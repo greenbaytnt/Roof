@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar class="toolbar-background">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+      <div *ngIf="totalPages != undefined">
+        <ion-button (click)="selectPage(false)" *ngIf="false">
+          <img src="../../assets/imgs/arrow-back.svg" color="primary" />
+        </ion-button>
+        <ion-button disabled class="button">
+          <label class="Title">Page {{page}} - {{totalPages}}</label>
+        </ion-button>
+        <ion-button (click)="selectPage(true)" *ngIf="false">
+          <img src="../../assets/imgs/arrow-forward.svg" alt="" />
+        </ion-button>
+      </div>
+      <div>
+        <ion-button (click)="openPopover($event,1)">
+          <label class="TitleSel">Building({{buildingNumber}}): </label>
+          <label class="Title">{{buildinTxt}}</label>
+        </ion-button>
+        <ion-button *ngIf="!isSigned" (click)="openPopover($event,2)">
+          <label class="TitleSel">Type({{buildingTypeLength}}): </label>
+          <label class="Title">{{typeTxt}}</label>
+        </ion-button>
+      </div>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <!--<ion-icon name="checkmark-circle-outline" style="color: gray;"></ion-icon> [class.hidden]="disablePrinter"-->
+      <ion-icon name="print-outline" (click)="PrinterFunction()" class="printbutton"  color="primary"></ion-icon>
+      <ion-button (click)="openEmailClient()" [disabled]="canSendEmail" class="mail">
+        <img src="../../assets/imgs/mail_icon2.svg" height="30px" />
+      </ion-button>
+      <ion-button (click)="changeProjectStatus()" [disabled]="!canChangeStatus">
+        <img src="../../assets/imgs/arrow-forward.svg" alt="" />
+        <img src="../../assets/imgs/arrow-forward.svg" alt="" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scroll-y="false">
+  <ion-grid class="grid">
+    <ion-row>
+      <ion-col size="12" style="height: 45px">
+        <span *ngIf="!isSigned" class="Final-proposal">Proposal Preview{{ finalProposaltext ? "(Final proposal)" : ""}}</span>
+        <span *ngIf="isSigned" class="Final-proposal">Signed Proposal</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row" id="pdf-viewer">
+      <ion-col size="12">
+        <pdf-viewer
+          *ngIf="pdfSrc != undefined"
+          [show-all]="true"
+          [src]="pdfSrc"
+          [render-text]="true"
+          [original-size]="false"
+          [autoresize]="true"
+          [zoom]="1"
+          [show-borders]="false"
+          [(page)]="page"
+          (after-load-complete)="afterLoadComplete($event)"
+          style="width: 100%; height: 90%; display: block"></pdf-viewer>
+        <div *ngIf="!loadingFiles && pdfSrc === undefined" class="text-center">Could not find a signed document. You will be redirected.</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
